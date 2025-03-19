@@ -13,19 +13,10 @@ export enum EnumTokens {
 }
 
 class AuthService {
-	async main(
-		type: 'login' | 'register',
-		data: IAuthFormData,
-		token?: string | null
-	) {
+	async main(type: 'login' | 'register', data: IAuthFormData) {
 		const response = await axiosClassic.post<IAuthResponse>(
 			`/auth/${type}`,
-			data,
-			{
-				headers: {
-					recaptcha: token,
-				},
-			}
+			data
 		)
 
 		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)

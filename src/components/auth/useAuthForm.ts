@@ -1,14 +1,17 @@
+import { currentAiAtom, ECurrentAI } from '@/atoms/current-ai.atom'
 import { PROTECTED_PAGES } from '@/config/pages/protected.config'
 import authService from '@/services/auth/auth.service'
 import { IAuthFormData } from '@/types/types'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 export const useAuthForm = (isLogin?: boolean) => {
+	const currentAi = useAtomValue(currentAiAtom)
 	const { register, handleSubmit, reset, formState } = useForm<IAuthFormData>({
 		mode: 'onChange',
 	})
@@ -24,7 +27,11 @@ export const useAuthForm = (isLogin?: boolean) => {
 		onSuccess() {
 			startIsLoginTransition(() => {
 				reset()
-				router.push(PROTECTED_PAGES.DASHBOARD)
+				if (currentAi === ECurrentAI.EDITOR) {
+					router.push(PROTECTED_PAGES.TRANSCRIBE)
+				} else {
+					router.push(PROTECTED_PAGES.EDIT)
+				}
 			})
 		},
 		onError(error) {
@@ -46,7 +53,11 @@ export const useAuthForm = (isLogin?: boolean) => {
 		onSuccess() {
 			startIsRegisterTransition(() => {
 				reset()
-				router.push(PROTECTED_PAGES.DASHBOARD)
+				if (currentAi === ECurrentAI.EDITOR) {
+					router.push(PROTECTED_PAGES.TRANSCRIBE)
+				} else {
+					router.push(PROTECTED_PAGES.EDIT)
+				}
 			})
 		},
 		onError(error) {

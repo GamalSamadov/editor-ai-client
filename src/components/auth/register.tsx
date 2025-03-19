@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Eye, EyeClosed } from 'lucide-react'
+import { Eye, EyeClosed, Loader2 } from 'lucide-react'
 import { Label } from '@radix-ui/react-label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -80,7 +80,8 @@ export const Register = () => {
 				</CardContent>
 				<CardFooter>
 					<Button className='w-full' type='submit'>
-						{isLoading ? 'Saqlanmoqda...' : 'Saqlash'}
+						<span>Saqlash</span>{' '}
+						{isLoading && <Loader2 size={10} className='animate-spin' />}
 					</Button>
 				</CardFooter>
 			</Card>

@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 export default async function Home() {
 	const user = await getServerAuth()
 	if (user) {
-		return redirect(PROTECTED_PAGES.DASHBOARD)
+		return redirect(PROTECTED_PAGES.TRANSCRIBE)
 	}
 
 	return (

@@ -1,5 +1,6 @@
 class ProtectedPages {
-	DASHBOARD = '/dashboard'
+	TRANSCRIBE = '/transcribe'
+	EDIT = '/edit'
 }
 
 export const PROTECTED_PAGES = new ProtectedPages()

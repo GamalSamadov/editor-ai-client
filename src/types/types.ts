@@ -8,3 +8,7 @@ export interface IUser {
 export interface IAuthFormData extends Pick<IUser, 'email'> {
 	password: string
 }
+
+export interface ITranscribeFormData {
+	url: string
+}
