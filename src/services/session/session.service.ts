@@ -1,5 +1,5 @@
 import { axiosClassic } from '@/api/axios'
-import { Event } from '@/services/event/event.types'
+import { IEvent } from '@/services/event/event.types'
 
 class SessionService {
 	public async startSession() {
@@ -11,7 +11,7 @@ class SessionService {
 	}
 
 	public async getAllSessions(sessionId: string | null) {
-		const { data } = await axiosClassic.get<Event[]>(
+		const { data } = await axiosClassic.get<IEvent[]>(
 			`/events/${sessionId}/find-all`
 		)
 

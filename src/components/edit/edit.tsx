@@ -1,15 +1,23 @@
 'use client'
 
-import { currentAiAtom, ECurrentAI } from '@/atoms/current-ai.atom'
-import { useSetAtom } from 'jotai'
-import { useEffect } from 'react'
+import { useStartEdit } from './useStartEdit'
 
 export const Edit = () => {
-	const setCurrentAi = useSetAtom(currentAiAtom)
+	const { register, handleSubmit, formState, onSubmit, handleFileChange } =
+		useStartEdit()
 
-	useEffect(() => {
-		setCurrentAi(ECurrentAI.EDITOR)
-	}, [])
-
-	return <div>Edit</div>
+	return (
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div>
+				<input
+					type='file'
+					accept='.txt,.docx'
+					{...register('file', { required: true })}
+					onChange={handleFileChange}
+				/>
+				{formState.errors.file && <p>This file is required.</p>}
+			</div>
+			<button type='submit'>Submit</button>
+		</form>
+	)
 }

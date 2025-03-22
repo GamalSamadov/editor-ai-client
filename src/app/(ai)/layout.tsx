@@ -13,19 +13,19 @@ const LayoutAI = ({ children }: PropsWithChildren) => {
 	const [isSheetOpen, setIsSheetOpen] = useAtom(sheetAtom)
 
 	return (
-		<main className='grid grid-cols-1 lg:grid-cols-6 grid-rows-10 h-screen'>
-			<div
+		<main className='flex h-screen'>
+			<aside
 				className={twMerge(
 					'hidden',
 					isSheetOpen &&
-						'lg:col-span-1 row-span-10 bg-zinc-100 dark:bg-zinc-950 lg:block lg:h-screen'
+						'bg-zinc-100 dark:bg-zinc-950 lg:block h-screen overflow-y-auto w-72 scrollbar'
 				)}
 			>
 				<div className='flex items-center justify-between px-6 py-5.5'>
 					{isSheetOpen && (
 						<>
 							<PanelRightOpen
-								size={25}
+								size={22}
 								className='cursor-pointer hidden lg:block'
 								onClick={() => setIsSheetOpen(false)}
 							/>
@@ -34,11 +34,10 @@ const LayoutAI = ({ children }: PropsWithChildren) => {
 					)}
 				</div>
 				<Aside />
-			</div>
+			</aside>
 			<div
 				className={twMerge(
-					'px-1 md:px-2 col-span-1 row-span-10 flex flex-col justify-between overflow-hidden',
-					isSheetOpen ? 'lg:col-span-5' : 'lg:col-span-6'
+					'px-1 md:px-2 flex flex-col justify-between overflow-hidden w-full'
 				)}
 			>
 				<Header />
