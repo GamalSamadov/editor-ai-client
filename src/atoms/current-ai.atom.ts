@@ -1,11 +1,11 @@
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithStorage } from "jotai/utils"
 
 export enum ECurrentAI {
-	EDITOR = 'editor',
-	TRANSCRIBE = 'transcribe',
+  EDITOR = "edit",
+  TRANSCRIBE = "transcribe",
 }
 
 export const currentAiAtom = atomWithStorage<ECurrentAI>(
-	'current_ai',
-	ECurrentAI.TRANSCRIBE
+  "current_ai",
+  ECurrentAI.TRANSCRIBE
 )

@@ -31,11 +31,7 @@ export const useLogout = () => {
     },
   })
 
-  const logOut = () => {
-    mutate()
-  }
-
   const isLoading = isPending || isLogoutTransition
 
-  return { logOut, isLoading }
+  return { logOut: mutate, isLoading }
 }

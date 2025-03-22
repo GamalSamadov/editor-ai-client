@@ -28,9 +28,9 @@ export const useAuthForm = (isLogin?: boolean) => {
       startIsLoginTransition(() => {
         reset()
         if (currentAi === ECurrentAI.EDITOR) {
-          router.push(PROTECTED_PAGES.TRANSCRIBE)
-        } else {
           router.push(PROTECTED_PAGES.EDIT)
+        } else {
+          router.push(PROTECTED_PAGES.TRANSCRIBE)
         }
       })
     },
