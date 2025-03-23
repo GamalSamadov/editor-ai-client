@@ -9,7 +9,6 @@ const axiosOptions: CreateAxiosDefaults = {
   headers: {
     ...getContentType(),
   },
-  withCredentials: true,
 }
 
 export const axiosClassic = axios.create(axiosOptions)
