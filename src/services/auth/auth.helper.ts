@@ -16,7 +16,7 @@ const getBaseDomain = (url: string | undefined): string | undefined => {
 }
 
 const cookieDomain = IS_PRODUCTION
-  ? getBaseDomain(process.env.NEXT_PUBLIC_BASE_API_URL)
+  ? getBaseDomain(process.env.NEXT_PUBLIC_BASE_URL)
   : "localhost"
 
 export const getAccessToken = () => {
