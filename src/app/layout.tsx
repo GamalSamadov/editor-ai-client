@@ -2,10 +2,7 @@ import Providers from "@/providers/providers"
 import "./globals.css"
 
 export const metadata = {
-  title: "JanobAI",
-  description:
-    "JanobAI - Sun'iy intillekt orqali ishlovchi o'zbekcha youtube platformasidagi videolarni matnga bexato o'giruvchi ajoib madel",
-
+  title: "JanobMuharrir",
   icons: [
     {
       rel: "icon",
