@@ -1,3 +1,4 @@
+export const IS_PRODUCTION = process.env.NODE_ENV === "production"
 export const API_URL = `${process.env.NEXT_PUBLIC_BASE_API_URL}/api`
 
 export const IS_CLIENT = typeof window !== "undefined"
