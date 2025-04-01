@@ -3,6 +3,9 @@ import "./globals.css"
 
 export const metadata = {
   title: "JanobMuharrir",
+  description:
+    "JanobMuharrir - Sun'iy intillekt orqali o'zbekcha matnlarni tahrir qiladigan suniy intellekt dasturi",
+
   icons: [
     {
       rel: "icon",

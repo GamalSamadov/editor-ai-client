@@ -2,10 +2,10 @@ import { MetadataRoute } from "next"
 
 const manifest = (): MetadataRoute.Manifest => {
   return {
-    name: "JanobAI - Videoni matniga bexato o'girish",
-    short_name: "JanobAI",
+    name: "JanobMuharrir",
+    short_name: "JanobMuharrir",
     description:
-      "JanobAI - Sun'iy intillekt orqali ishlovchi o'zbekcha youtube platformasidagi videolarni matnga bexato o'giruvchi ajoib madel",
+      "JanobMuharrir - Sun'iy intillekt orqali o'zbekcha matnlarni tahrir qiladigan suniy intellekt dasturi",
     start_url: "/",
     display: "standalone",
     background_color: "#292929",
