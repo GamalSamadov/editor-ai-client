@@ -21,13 +21,14 @@ const cookieDomain = IS_PRODUCTION
 
 export const getAccessToken = () => {
   const accessToken = Cookies.get("accessToken")
+  console.log("accessToken", accessToken)
   return accessToken || null
 }
 
 export const saveTokenStorage = (accessToken: string) => {
   Cookies.set("accessToken", accessToken, {
     domain: cookieDomain,
-    sameSite: !IS_PRODUCTION ? "None" : "Lax",
+    sameSite: IS_PRODUCTION ? "Lax" : "None",
     expires: TOKEN_EXPIRES,
   })
 }
