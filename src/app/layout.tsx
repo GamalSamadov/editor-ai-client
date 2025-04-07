@@ -339,7 +339,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  console.log("Hello from development mode")
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
