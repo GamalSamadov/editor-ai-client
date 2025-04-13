@@ -4,7 +4,7 @@ import { useParams } from "next/navigation"
 import { useQueryClient } from "@tanstack/react-query"
 import { IEvent } from "@/services/event/event.types"
 
-export const useTranscribe = () => {
+export const useEdit = () => {
   const { sessionId } = useParams()
 
   const [events, setEvents] = useState<IEvent[]>([])
@@ -15,13 +15,10 @@ export const useTranscribe = () => {
   useEffect(() => {
     if (!sessionId) return
 
-    // Connect to SSE
-    const evtSource = new EventSource(
-      `${API_URL}/transcript-events/${sessionId}`
-    )
+    const evtSource = new EventSource(`${API_URL}/edit-events/${sessionId}`)
 
     evtSource.onmessage = (e) => {
-      queryClient.invalidateQueries({ queryKey: ["transcripts"] })
+      queryClient.invalidateQueries({ queryKey: ["edits"] })
       const data = JSON.parse(e.data)
       setEvents((prev) => [...prev, data])
       if (data.completed) {

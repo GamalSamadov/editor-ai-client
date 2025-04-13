@@ -1,4 +1,4 @@
-import { Edit } from "@/components/edit/edit"
+import { StartEdit } from "@/components/edit/start-edit"
 import { protectPage } from "@/utils/server/protect-page"
 import { Metadata } from "next"
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const EditPage = async () => {
   await protectPage()
 
-  return <Edit />
+  return <StartEdit />
 }
 
 export default EditPage
