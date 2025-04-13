@@ -28,7 +28,7 @@ export const Transcripts = () => {
               key={transcript.id}
             >
               <Link
-                href={`/transcribe/${transcript.session.id}?url=${transcript.url}`}
+                href={`/transcribe/${transcript.session.id}`}
                 className="pl-2 py-1 hover:bg-zinc-500/30"
               >
                 {transcript.status === ETranscriptionJobStatus.RUNNING ? (

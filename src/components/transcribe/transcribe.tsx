@@ -1,19 +1,17 @@
 "use client"
 
-import Link from "next/link"
-import { redirect } from "next/navigation"
 import { Loader } from "../ui/loader/loader"
 import { Shine } from "../ui/shine/shine"
 
 import { Button } from "../ui/button"
 import { useTranscribe } from "./hooks/useTranscribe"
-import { useCopyOrDownload } from "./hooks/useCopyOrDownload"
-import { Check, Copy, Download, Video } from "lucide-react"
+import { Check, Copy, Download } from "lucide-react"
 import { Dialog } from "../ui/dialog/Dialog"
 import { Input } from "../ui/input"
+import { useCopyOrDownload } from "@/hooks/useCopyOrDownload"
 
 export function Transcribe() {
-  const { completed, url, events } = useTranscribe()
+  const { completed, events } = useTranscribe()
   const {
     handleDownloadDocx,
     handleCopy,
@@ -21,10 +19,6 @@ export function Transcribe() {
     htmlContent,
     setDownloadTitle,
   } = useCopyOrDownload(events)
-
-  if (!url) {
-    return redirect("/transcribe")
-  }
 
   return (
     <div className="p-4 w-full h-full flex items-center justify-center">
@@ -41,11 +35,11 @@ export function Transcribe() {
         <div className="w-full h-full rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex justify-center items-start flex-col gap-4 overflow-y-auto p-6 scrollbar">
           <div className="h-full">
             <div className="w-full flex flex-row justify-between gap-2 my-4">
-              <Link href={url} target="_blank">
+              {/* <Link href={url} target="_blank">
                 <Button>
                   <Video /> Video
                 </Button>
-              </Link>
+              </Link> */}
 
               <div>
                 <Button onClick={handleCopy} disabled={copied}>

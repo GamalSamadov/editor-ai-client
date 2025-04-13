@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge"
 import { Transcripts } from "./transcripts/transcripts"
 
 const list = [
-  // { icon: '📖', title: 'JanobMuharrir', href: PROTECTED_PAGES.EDIT },
+  { icon: "📖", title: "JanobMuharrir", href: PROTECTED_PAGES.EDIT },
   { icon: "👨🏼‍💻", title: "JanobYozuvchi", href: PROTECTED_PAGES.TRANSCRIBE },
 ]
 
