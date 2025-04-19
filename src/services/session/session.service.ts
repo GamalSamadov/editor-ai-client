@@ -1,7 +1,24 @@
 import { axiosClassic } from "@/api/axios"
 import { IEvent } from "@/services/event/event.types"
+import { ISession } from "./session.types"
+import { toast } from "sonner"
 
 class SessionService {
+  async getAll() {
+    const response = await axiosClassic.get<ISession[]>("/sessions")
+    return response.data
+  }
+
+  async delete(id: string) {
+    try {
+      return axiosClassic.delete<ISession>(`/sessions/${id}`)
+    } catch {
+      toast.error("Xatoli yuz berdi. Iltimos qayta urinib ko'ring.")
+    }
+  }
+}
+
+class TranscriptionSessionService {
   public async startSession(url: string | null) {
     const { data } = await axiosClassic.post<{ sessionId: string }>(
       `/sessions/start-transcribe`,
@@ -51,5 +68,6 @@ class EditSessionService {
   }
 }
 
-export const sessionService = new SessionService()
+export const transcriptionSessionService = new TranscriptionSessionService()
 export const editSessionService = new EditSessionService()
+export const sessionService = new SessionService()

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { currentAiAtom, ECurrentAI } from "@/atoms/current-ai.atom"
 import { eventAtom, transcribeUrlAtom } from "@/atoms/transcribe.atom"
 import { PROTECTED_PAGES } from "@/config/pages/protected.config"
-import { sessionService } from "@/services/session/session.service"
+import { transcriptionSessionService } from "@/services/session/session.service"
 import { ITranscribeFormData } from "@/types/types"
 
 export const useStartTranscribe = () => {
@@ -26,7 +26,7 @@ export const useStartTranscribe = () => {
   const onSubmit = () => {
     startIsLoadingTransition(async () => {
       reset()
-      const newSessionId = await sessionService.startSession(url)
+      const newSessionId = await transcriptionSessionService.startSession(url)
       setEvent(null)
       router.push(`${PROTECTED_PAGES.TRANSCRIBE}/${newSessionId}`)
     })
