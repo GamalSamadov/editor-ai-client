@@ -1,52 +1,51 @@
 import Link from "next/link"
-import { useTranscripts } from "./useTranscripts"
+import { useSessions } from "./useSessions"
 import { Shine } from "../ui/shine/shine"
-import { ETranscriptionJobStatus } from "@/services/transcript/transcript.types"
 import { Loader2, Trash } from "lucide-react"
-import { useDeleteTranscript } from "./useDeleteTranscript"
+import { useDeleteSession } from "./useDeleteSession"
 import { Dialog } from "../ui/dialog/Dialog"
+import { isCompleted, isError, isRunning } from "./helpers/isRunning"
+import { ESessionType } from "@/services/session/session.types"
+import { Loaders } from "./loaders"
 
-export const Transcripts = () => {
-  const { data: transcripts, isLoading: isLoadingTranscripts } =
-    useTranscripts()
+export const Sessions = () => {
+  const { data: sessions, isLoading } = useSessions()
 
-  const { deleteTranscript, isDeleting } = useDeleteTranscript()
+  const { deleteSession, isDeleting } = useDeleteSession()
 
   return (
     <div className="mt-4">
       <h2 className="text-zinc-800 dark:text-zinc-300 mb-2">Amaliyotlar:</h2>
 
       <div className="flex flex-col gap-2 mt-1">
-        {isLoadingTranscripts ? (
-          <div>Loading...</div>
-        ) : !transcripts || transcripts.length === 0 ? (
+        {isLoading ? (
+          <Loaders />
+        ) : !sessions || sessions.length === 0 ? (
           <div className="text-red-500">Amaliyot yo&apos;q.</div>
         ) : (
-          transcripts?.map((transcript) => (
+          sessions?.map((session) => (
             <div
               className="rounded-md flex justify-between items-center gap-1 cursor-pointer text-sm"
-              key={transcript.id}
+              key={session.id}
             >
               <Link
-                href={`/transcribe/${transcript.session.id}`}
+                href={`/${session.type === ESessionType.TRANSCRIBE ? "transcribe" : session.type === ESessionType.EDIT && "edit"}/${session.id}`}
                 className="pl-2 py-1 hover:bg-zinc-500/30"
               >
-                {transcript.status === ETranscriptionJobStatus.RUNNING ? (
+                {isRunning(session) ? (
                   <Shine>
                     <span className="inline-block w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      {transcript.downloadedTitle
-                        ? transcript.downloadedTitle
-                        : "Ishga tushirilmoqda..."}
+                      {session.title ? session.title : "Ishga tushirilmoqda..."}
                     </span>
                   </Shine>
-                ) : transcript.status === ETranscriptionJobStatus.COMPLETED ? (
+                ) : isCompleted(session) ? (
                   <span className="inline-block w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">
-                    {transcript.downloadedTitle}
+                    {session.title}
                   </span>
                 ) : (
-                  transcript.status === ETranscriptionJobStatus.ERROR && (
+                  isError(session) && (
                     <span className="inline-block w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-red-500">
-                      {transcript.downloadedTitle}
+                      {session.title}
                     </span>
                   )
                 )}
@@ -63,7 +62,7 @@ export const Transcripts = () => {
                   )
                 }
                 onClick={() => {
-                  deleteTranscript(transcript.id)
+                  deleteSession(session.id)
                 }}
                 disabled={isDeleting}
                 variant="outline"
