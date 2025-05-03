@@ -68,6 +68,36 @@ class EditSessionService {
   }
 }
 
+class CorrectionSessionService {
+  public async startSession(text: string, title: string) {
+    const requestBody = {
+      text,
+      title,
+    }
+
+    try {
+      const { data } = await axiosClassic.post<{ sessionId: string }>(
+        `/sessions/start-correction`,
+        requestBody
+      )
+
+      return data.sessionId
+    } catch (error) {
+      console.error("Error starting session:", error)
+      throw new Error("Failed to start session")
+    }
+  }
+
+  public async getAllSessions(sessionId: string | null) {
+    const { data } = await axiosClassic.get<IEvent[]>(
+      `/correction-events/${sessionId}/find-all`
+    )
+
+    return data
+  }
+}
+
 export const transcriptionSessionService = new TranscriptionSessionService()
 export const editSessionService = new EditSessionService()
 export const sessionService = new SessionService()
+export const correctionSessionService = new CorrectionSessionService()

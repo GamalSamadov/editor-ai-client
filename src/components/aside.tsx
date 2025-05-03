@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge"
 import { Sessions } from "./sessions/sessions"
 
 const list = [
+  { icon: "🤓", title: "JanobBelgichi", href: PROTECTED_PAGES.CORRECTION },
   { icon: "📖", title: "JanobMuharrir", href: PROTECTED_PAGES.EDIT },
   { icon: "👨🏼‍💻", title: "JanobYozuvchi", href: PROTECTED_PAGES.TRANSCRIBE },
 ]
