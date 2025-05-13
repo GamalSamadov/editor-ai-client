@@ -1,5 +1,5 @@
 export interface IEvent {
-	content: string
-	completed?: boolean
-	createdAt: string
+  content: string
+  completed?: boolean
+  createdAt: string
 }

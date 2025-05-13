@@ -1,10 +1,11 @@
 import { PROTECTED_PAGES } from "@/config/pages/protected.config"
 import { useRouter } from "next/navigation"
 import { twMerge } from "tailwind-merge"
-import { Transcripts } from "./transcripts/transcripts"
+import { Sessions } from "./sessions/sessions"
 
 const list = [
-  // { icon: '📖', title: 'JanobMuharrir', href: PROTECTED_PAGES.EDIT },
+  { icon: "🤓", title: "JanobBelgichi", href: PROTECTED_PAGES.CORRECTION },
+  { icon: "📖", title: "JanobMuharrir", href: PROTECTED_PAGES.EDIT },
   { icon: "👨🏼‍💻", title: "JanobYozuvchi", href: PROTECTED_PAGES.TRANSCRIBE },
 ]
 
@@ -28,7 +29,7 @@ export const Aside = () => {
         ))}
       </ul>
 
-      <Transcripts />
+      <Sessions />
     </div>
   )
 }

@@ -8,10 +8,10 @@ import { Check, Copy, Download } from "lucide-react"
 import { Dialog } from "../ui/dialog/Dialog"
 import { Input } from "../ui/input"
 import { useCopyOrDownload } from "@/hooks/useCopyOrDownload"
-import { useEdit } from "./hooks/useEdit"
+import { useCorrection } from "./hooks/useCorrection"
 
-export function Edit() {
-  const { completed, events } = useEdit()
+export function Correction() {
+  const { completed, events } = useCorrection()
   const {
     handleDownloadDocx,
     handleCopy,
@@ -35,13 +35,6 @@ export function Edit() {
         <div className="w-full h-full rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex justify-center items-start flex-col gap-4 overflow-y-auto p-6 scrollbar">
           <div className="h-full">
             <div className="w-full flex flex-row justify-between gap-2 my-4">
-              {/* TODO: implement open video button */}
-              {/* <Link href={url} target="_blank">
-                <Button>
-                  <Video /> Video
-                </Button>
-              </Link> */}
-
               <div>
                 <Button onClick={handleCopy} disabled={copied}>
                   {copied ? <Check /> : <Copy />}
@@ -57,7 +50,7 @@ export function Edit() {
                   onOpenChange={(isOpen) => {
                     if (!isOpen) {
                       setDownloadTitle(
-                        "janobYozuvchi-tomonidan-yozilgan-hujjat"
+                        "janobDasturchi-tomonidan-yozilgan-hujjat"
                       )
                     }
                   }}
